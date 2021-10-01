@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ss</title>
+    <link rel="stylesheet" type="text/css" href="css/demo_1.css">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script src="https://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.6/dayjs.min.js"></script>
+</head>
+<body >
+    <div id="demo" style="height: auto">
+
+        <!--    差值运算符    -->
+        {{ name.toUpperCase() }}
+
+
+        <!--    点击事件及事件修饰符    -->
+
+        <!--    阻止默认事件    -->
+        <div>
+            <a href="www.baidu.com" @click.prevent="prvent">阻止默认事件</a>
+        </div>
+
+        <!--   阻止冒泡    -->
+        <div @click="test_demo2" class="demo_event_trigger">
+            <button @click.stop="test_demo2">不带参测试</button>
+        </div>
+
+
+        <div class="demo_event_trigger">
+            <button @click.stop="trigger_p(100+2)">带参测试 </button>
+        </div>
+
+
+        <!--    姓名练习    -->
+        <div class="demo_name_test">
+            姓：<input type="text" v-model="firstname"><br/>
+            名：<input type="text" v-model="lastname"><br/>
+            name_1:{{firstname}}-{{lastname}}<br/>
+            name_2:{{this.getName()}}<br/>
+            name_3:{{fullname}}
+        </div><br/>
+
+
+        <!--    一个简单的取反实验    -->
+        <div style="margin-top: 50px">
+            <button @click="ishot=!ishot">点击修改相关信息</button>
+            <a>{{back}}</a>
+        </div>
+
+        <div >
+            <a v-for="a in address">
+                {{a.state}}-{{a.province}}-{{a.now_address}}-{{a.age}}
+            </a>
+        </div>
+
+
+        <!--    input筛选    -->
+        <div style="z-index:99999">
+            <input class="filter_input" type="text"  placeholder="在这里搜索" v-model="address_test" @click="show_address_China"/>
+            <div v-if="show_address" style="box-shadow:5px 10px 10px 5px #888888;z-index:99999;background-color:#FFF0F5;width:250px;height:auto;margin-left: 3px;text-align: center;overflow:scroll;overflow-x:hidden ">
+                <span v-for="address_China in filter_address_China" style=" align-content: center;z-index: 99999" @click="show_your_selected">
+                    {{address_China}}<br/>
+                </span>
+            </div>
+        </div>
+
+        <!--    数组实时监控运用    -->
+        <div style="height: auto;z-index: -1">
+            <div style="overflow:scroll;margin-top:250px;width:250px;height:250px;overflow-x: hidden;z-index:89;background-color: aqua" >
+                <span v-for="address_China in filter_address_China" style="z-index: -1">{{address_China}}<br/></span>
+            </div>
+            <button @click="delete_arr_shift">点击删除首位</button>
+            <button @click="create_arr_unshift">点击插入首位</button>
+            <button @click="delete_arr_pop">点击删除末尾</button>
+            <button @click="create_arr_push">点击插入末尾</button>
+        </div>
+
+        <div>
+            {{time}}-时间戳转化-{{Time}}-时间戳转化,watch异步-{{watch_Time}}-过滤器实现-{{time | time_filter}}--{{newtime}}
+        </div>
+
+        <div style="height: 100px;margin-top: 100px"></div>
+
+    </div>
+
+    <div id="demo_1" style="height: auto">
+        {{name.toUpperCase()}}
+    </div>
+
+    <script type="text/javascript" src="js/demo_1.js"></script>
+</body>
+</html>
